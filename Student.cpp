@@ -2,6 +2,21 @@
 #include <string>
 #include "student.h"
 
+Student::Student() 
+{
+	name = new char;
+	surname = new char;
+	group = new char;
+	
+	strcpy(name, "newName");
+	strcpy(surname, "newSurname");
+	strcpy(group, "newGroup");
+
+	progMark = 0;
+	adminMark = 0;
+	designMark = 0;
+}
+
 Student::Student(char *n, char *s, char *g, int pMark, int aMark, int dMark) 
 {
 	name = new char[strlen(n) + 1];
@@ -12,9 +27,9 @@ Student::Student(char *n, char *s, char *g, int pMark, int aMark, int dMark)
 	strcpy(surname, s);
 	strcpy(group, g);
 
-	progMark = 0;
-	adminMark = 0;
-	designMark = 0;
+	progMark = pMark;
+	adminMark = aMark;
+	designMark = dMark;
 }
 
 Student::Student(Student& student)
@@ -35,18 +50,20 @@ Student::~Student()
 
 void Student::setName(char *n) 
 {
-	char *name = new char[strlen(n)];
+	name = new char[strlen(n) + 1];
 	strcpy(name, n);
 }
 
 void Student::setSurname(char *s) 
 {
-	*surname = *s;
+	surname = new char[strlen(s) + 1];
+	strcpy(surname, s);
 }
 
 void Student::setGroup(char *g) 
 {
-	*group = *g;
+	group = new char[strlen(g) + 1];
+	strcpy(group, g);
 }
 
 void Student::setProgMark(int pMark)
@@ -96,21 +113,50 @@ int Student::getDesignMark()
 
 void Student::print()
 {
-	std::cout << "Student's data" << std::endl;
-	std::cout << "-------------------" << std::endl;
-	//std::cout << name << std::endl;
-	std::cout << getName() << std::endl;
-	std::cout << getSurname() << std::endl;
-	std::cout << getGroup() << std::endl;
-	std::cout << getProgMark() << std::endl;
-	std::cout << getAdminMark() << std::endl;
-	std::cout << getDesignMark() << std::endl;
+	std::cout << "\tStudent's data" << std::endl;
+	std::cout << "--------------------------" << std::endl;
+	std::cout << "name:\t\t" << name << std::endl;
+	std::cout << "surname:\t" << surname << std::endl;
+	std::cout << "group #:\t" << group << std::endl;
+	std::cout << "programming:\t" << getProgMark() << std::endl;
+	std::cout << "administation:\t" << getAdminMark() << std::endl;
+	std::cout << "design:\t\t" << getDesignMark() << std::endl << std::endl;
 }
 
 void Student::input()
 {
-	std::cout << "Input name" << std::endl;
-	std::cin >> name;
+	std::cout << "\tStudent's input" << std::endl;
+	std::cout << "--------------------------" << std::endl;
+
+	char *tmpStudent = new char[10];
+	
+	std::cout << "name:\t\t";
+	std::cin >> tmpStudent;
+	setName(tmpStudent);
+
+	std::cout << "surname:\t";
+	std::cin >> tmpStudent;
+	setSurname(tmpStudent);
+
+	std::cout << "group #:\t";
+	std::cin >> tmpStudent;
+	setGroup(tmpStudent);
+	
+	int tmpMark;
+
+	std::cout << "programming:\t";
+	std::cin >> tmpMark;
+	setProgMark(tmpMark);
+	
+	std::cout << "administration:\t";
+	std::cin >> tmpMark;
+	setAdminMark(tmpMark);
+
+	std::cout << "design:\t\t";
+	std::cin >> tmpMark;
+	setDesignMark(tmpMark);
+
+	std::cout << std::endl;
 }
 
 //void saveToFile(std::ofstream &stream);

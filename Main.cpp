@@ -4,7 +4,9 @@ using namespace std;
 
 int main()
 {
-	Student st1("", "", "", 0, 0, 0);
+
+	Student st1("Dan", "Stuopkin", "BNU", 0, 0, 0);
+
 	st1.setName("Dan");
 	st1.setSurname("Stuopkin");
 	st1.setGroup("BNU");
@@ -12,6 +14,9 @@ int main()
 	st1.setAdminMark(12);
 	st1.setDesignMark(12);
 
+	st1.print();
+	
+	st1.input();
 	st1.print();
 
 	return 0;

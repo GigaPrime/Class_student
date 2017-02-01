@@ -13,6 +13,7 @@ private:
 	int designMark;
 
 public:
+	Student();
 	Student(char *n, char *s, char *g, int pMark, int aMark, int dMark);
 	Student(Student& student);
 
