@@ -20,11 +20,11 @@ public:
 	~Student();
 
 	void setName(char *n);
-	void setSurname(char *surname);
-	void setGroup(char *group);
-	void setProgMark(int progMark);
-	void setAdminMark(int adminMark);
-	void setDesignMark(int designMark);
+	void setSurname(char *s);
+	void setGroup(char *g);
+	void setProgMark(int pMark);
+	void setAdminMark(int aMark);
+	void setDesignMark(int dMark);
 
 	char getName();
 	char getSurname();
