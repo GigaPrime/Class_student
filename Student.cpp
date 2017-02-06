@@ -159,5 +159,54 @@ void Student::input()
 	std::cout << std::endl;
 }
 
-//void saveToFile(std::ofstream &stream);
-//void loadFromFile(std::ifstream &stream);
+void Student::save(std::ostream& stream)
+{
+	int nameLenght = strlen(name);
+	int surnameLenght = strlen(surname);
+	int groupLenght = strlen(group);
+
+	stream.write((char*)&nameLenght, sizeof(nameLenght));
+	stream.write(name, nameLenght);
+
+	stream.write((char*)&surnameLenght, sizeof(surnameLenght));
+	stream.write(surname, surnameLenght);
+
+	stream.write((char*)&groupLenght, sizeof(groupLenght));
+	stream.write(group, groupLenght);
+
+	stream.write((char*)&progMark, sizeof(progMark));
+	stream.write((char*)&adminMark, sizeof(adminMark));
+	stream.write((char*)&designMark, sizeof(designMark));
+}
+
+void Student::load(std::ifstream &stream)
+{
+	int nameLenght = 0;
+	int surnameLenght = 0;
+	int groupLenght = 0;
+
+	stream.read((char*)&nameLenght, sizeof(nameLenght));
+	if (name != nullptr)
+		delete[] name;
+	name = new char[nameLenght + 1];
+	stream.read(name, nameLenght);
+	name[nameLenght] = '\0';
+
+	stream.read((char*)&surnameLenght, sizeof(surnameLenght));
+	if (surname != nullptr)
+		delete[] surname;
+	surname = new char[surnameLenght + 1];
+	stream.read(surname, surnameLenght);
+	surname[surnameLenght] = '\0';
+
+	stream.read((char*)&groupLenght, sizeof(groupLenght));
+	if (group != nullptr)
+		delete[] group;
+	group = new char[groupLenght + 1];
+	stream.read(group, groupLenght);
+	group[groupLenght] = '\0';
+
+	stream.read((char*)&progMark, sizeof(progMark));
+	stream.read((char*)&adminMark, sizeof(adminMark));
+	stream.read((char*)&designMark, sizeof(designMark));
+}

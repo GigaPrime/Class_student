@@ -36,8 +36,7 @@ public:
 	void print();
 	void input();
 
-	//void saveToFile(std::ofstream &stream);
-	//void loadFromFile(std::ifstream &stream);
+	void save(std::ostream& stream);
+	void load(std::ifstream& stream);
 };
-
 #endif // !__STUDENT_H__

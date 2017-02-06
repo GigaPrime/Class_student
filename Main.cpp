@@ -19,5 +19,27 @@ int main()
 	st1.input();
 	st1.print();
 
+	ofstream stS("student", ios::binary | ios::in);
+	if (stS)
+	{
+		st1.save(stS);
+	}
+	else
+	{
+		cout << "File Open error: " << "student" << endl;
+	}
+	
+	ifstream stL("student", ios::binary | ios::out);
+	if (stL)
+	{
+		st1.load(stL);
+	}
+	else
+	{
+		cout << "File open error: " << "student" << endl;
+	}
+	
+	st1.print();
+	
 	return 0;
 }
